@@ -7,7 +7,7 @@ int Floor(vector<int> arr, int n, int target){
     int low=0;
     int high=n-1;
     int ans=n;
-    while(low<=high){
+    while(low<=high){ 
         int mid=(low+high)/2;
         //may be a answer
         if(arr[mid]<=target){
