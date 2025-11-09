@@ -4,7 +4,7 @@ using namespace std;
 
 class Solution{
     public:
-        string LargeOddNum(string &s){
+        string LargeOddNum1(string &s){
             int n=s.size();
             int i=0;
             string str;
@@ -16,6 +16,19 @@ class Solution{
             }
             return str;
         }
+
+        string LargeOddNum2(string &s){
+            int n=s.size();
+            int i=0;
+            
+            while(i<n && s[i]=='0')i++;
+            s=s.substr(i);
+
+            while(!s.empty() && (s.back()-'0')%2==0){
+                s.pop_back();
+            }
+            return s;
+        }
 };
 int main() {
     string str;
@@ -23,7 +36,8 @@ int main() {
     getline(cin, str);
 
     Solution obj;
-    string ans = obj.LargeOddNum(str);
+    // string ans = obj.LargeOddNum1(str);
+    string ans = obj.LargeOddNum2(str);
 
     cout << "The lrgest number in string is: " << endl;
     cout << ans << endl;
