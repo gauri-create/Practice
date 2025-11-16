@@ -33,7 +33,9 @@ class Solution{
 
 int main(){
     string s;
-    int k;    cout<<"Enter string: ";
+    int k;
+    
+    cout<<"Enter string: ";
     getline(cin, s);
 
     cout<<"Enter value of k: ";
