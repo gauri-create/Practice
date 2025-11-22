@@ -14,9 +14,9 @@ class Solution{
     int Count(int ind, vector<int>&ds, int s, int sum, vector<int> arr, int n){
         if(ind==n){
         //condition satisfiedd
-        if(s==sum) return 1;
-        else 
-           return 0;
+            if(s==sum) return 1;
+            else 
+                return 0;
         }
         s+=arr[ind];
         int l= Count(ind+1, ds, s, sum,arr, n);
