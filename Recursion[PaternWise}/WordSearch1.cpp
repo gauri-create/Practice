@@ -17,7 +17,7 @@ public:
         }
         return false;
     }
-    
+    private:
     vector<vector<int>> directions{{1,0},{-1,0},{0,1},{0,-1}};
     bool find(vector<vector<char>> &board, int i, int j, int ind, int m, int n, string& word){
         if(ind==word.length()) return true;
