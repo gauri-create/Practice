@@ -39,7 +39,7 @@ public:
 
 int main(){
     Solution obj;
-    string word="ABCB";
+    string word="ABCE";
     vector<vector<char>> board={
         {'A','B','C','E'},
         {'S','F','C','S'},
