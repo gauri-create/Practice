@@ -5,21 +5,23 @@ using namespace std;
 
 class Solution{
     public:
-    /*
-    //bruteforce
-    int kthLargestElement(vector<int>& nums, int k){
-        priority_queue<int, vector<int>, greater<int>>pq;
+   /* //BruteForce
+    int kthSmallestElement(vector<int>& nums, int k){
+        priority_queue<int>pq;
         for(int i=0; i<k;i++)pq.push(nums[i]);
         for(int i=k; i<nums.size();i++){
-            if(nums[i]>pq.top()){
+            if(nums[i]<pq.top()){
                 pq.pop();
                 pq.push(nums[i]);
             }
         }
         return pq.top();   
     }
-    */
-   int kthLargestElement(vector<int>&nums, int k){
+    //BruteForce  */
+
+    //optimal
+
+    int kthSmallestElement(vector<int>&nums, int k){
         if(k>nums.size()) return -1;
         int left=0, right=nums.size()-1;
 
@@ -33,16 +35,16 @@ class Solution{
         return -1;
     }
     private:
-    int randomIndex(int left, int right){
+    int randomIndex(int &left, int &right){
         int len=right-left+1;
         return (rand()% len)+left;
     }
-    int partitionAndReturnIndex(vector<int>&nums, int pivotInndex, int left, int right){
-        int pivot=nums[pivotInndex];
-        swap(nums[left], nums[pivotInndex]);
+    int partitionAndReturnIndex(vector<int>&nums, int pivotIndex, int left, int right){
+        int pivot=nums[pivotIndex];
+        swap(nums[left], nums[pivotIndex]);
         int ind=left+1;
         for(int i=left+1; i<=right; i++){
-            if(nums[i]>pivot){
+            if(nums[i]<pivot){
                 swap(nums[ind], nums[i]);
                 ind++;
             }
@@ -56,7 +58,7 @@ int main(){
     Solution obj;
     vector<int> nums={1, 2, 3, 4, 5};
     int k=2;
-    int ans=obj.kthLargestElement(nums, k);
+    int ans=obj.kthSmallestElement(nums, k);
     cout<<ans;
     return 0;
 }
