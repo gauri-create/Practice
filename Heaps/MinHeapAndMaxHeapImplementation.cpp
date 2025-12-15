@@ -96,7 +96,7 @@ int main(){
             cout<<obj.heapSize()<<" ";
         }
         else  if(operations[i]=="isEmpty"){
-            cout<<(obj.isEmpty()? "true " : "false ");
+            cout<<(obj.isEmpty()? "true " : "false");
         }
         else if(operations[i]=="extractMin"){
             obj.extractMin();
