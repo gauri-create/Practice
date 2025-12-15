@@ -1,5 +1,4 @@
 #include<iostream>
-#include<vector>
 #include<unordered_map>
 using namespace std;
 
@@ -7,7 +6,6 @@ class Solution{
     public:
     int kDistinctChar(string &s, int k){
         int maxlen=0, l=0, r=0;
-        // vector<int>hash(s.size());
         unordered_map<char, int> mpp;
         while(r<s.size()){
             mpp[s[r]]++;
