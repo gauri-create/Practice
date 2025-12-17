@@ -29,7 +29,7 @@ class Solution{
         dfs(root->right, res);
     }
     public:
-    vector<int> postorder(TreeNode* root){
+    vector<int> Preorder(TreeNode* root){
         vector<int>res;
         dfs(root, res);
         return res;
@@ -49,7 +49,7 @@ int main(){
     root->left->left = new TreeNode(4);
     root->left->right = new TreeNode(2);
     Solution obj;
-    vector<int> result = obj.postorder(root);
+    vector<int> result = obj.Preorder(root);
     for(auto val : result){
         cout<<val<<" ";
     }
