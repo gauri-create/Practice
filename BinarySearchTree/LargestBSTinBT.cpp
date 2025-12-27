@@ -24,7 +24,7 @@ class NodeValue{
 };
 
 class Solution{
-    private:
+    private: 
     NodeValue largestBSTSubtreeHelper(TreeNode* root){
         if(!root){
             return NodeValue(INT_MAX, INT_MIN, 0);
