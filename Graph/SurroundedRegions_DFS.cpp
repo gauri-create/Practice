@@ -68,6 +68,6 @@ int main(){
     for(auto X: ans){
         for(auto y: X) cout<<y<<" ";
         cout<<endl;
-    }
+    } 
     return 0;
 }
