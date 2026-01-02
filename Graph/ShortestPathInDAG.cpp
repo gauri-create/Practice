@@ -2,68 +2,74 @@
 #include <vector>
 #include <queue>
 #include <algorithm>
+#include<stack>
 using namespace std;
 
-class Solution {
-public:
-    vector<int> shortestPath(int n, vector<vector<int>>& edges) {
-        vector<vector<pair<int,int>>> adj(n);
-
-        for (auto &it : edges) {
-            int u = it[0], v = it[1], w = it[2];
-            adj[u].push_back({v, w});
-            adj[v].push_back({u, w});
+class Solution{
+    private:
+    void topoSort(int node, vector<pair<int, int>> adj[], int vis[], stack<int>&st){
+        vis[node]=1;
+        for(auto it: adj[node]){
+            int v=it.first;
+            if(!vis[v]){
+                topoSort(v,adj, vis, st);
+            }
         }
+        st.push(node);
+    }
 
-        priority_queue<pair<int,int>,
-            vector<pair<int,int>>,
-            greater<pair<int,int>>> pq;
+    public:
+    vector<int> shortestPath(int N, int M, vector<vector<int>> & edges){
+        vector<pair<int, int>> adj[N];
+        for(int i=0; i<M; i++){
+            int u=edges[i][0];
+            int v=edges[i][1];
+            int wt=edges[i][2];
+            adj[u].push_back({v, wt});
+        }
+        int vis[N] = {0};
 
-        vector<int> dist(n, 1e9), parent(n);
-        for (int i = 0; i < n; i++) parent[i] = i;
+        stack<int>st;
+        for(int i=0; i<N; i++){
+            if(!vis[i]){
+                topoSort(i, adj, vis, st);
+            }
+        }
+        vector<int>dist(N);
+        for(int i=0; i<N; i++) dist[i]=1e9;
+        dist[0]=0;
+        while(!st.empty()){
+            int node = st.top();
+            st.pop();
 
-        dist[0] = 0;
-        pq.push({0, 0});
+            for(auto it: adj[node]){
+                int v=it.first;
+                int wt = it.second;
 
-        while (!pq.empty()) {
-            auto [dis, node] = pq.top();
-            pq.pop();
-
-            if (dis > dist[node]) continue;
-
-            for (auto &[next, w] : adj[node]) {
-                if (dis + w < dist[next]) {
-                    dist[next] = dis + w;
-                    parent[next] = node;
-                    pq.push({dist[next], next});
+                if(dist[node]+ wt<dist[v]){
+                    dist[v] = wt+ dist[node];
                 }
             }
         }
-
-        if (dist[n - 1] == 1e9) return {-1};
-
-        vector<int> path;
-        int cur = n - 1;
-        while (parent[cur] != cur) {
-            path.push_back(cur);
-            cur = parent[cur];
+        for(int i=0; i<N; i++){
+            if(dist[i] == 1e9){
+                dist[i]=-1;
+            }
         }
-        path.push_back(0);
-        reverse(path.begin(), path.end());
-
-        return path;
+        return dist;
     }
+
 };
 
-int main() {
-    int N = 6;
-    vector<vector<int>> edges = {
-        {0,1,2},{0,4,1},{4,5,4},
-        {4,2,2},{1,2,3},{2,3,6},{5,3,1}
+int main(){
+    int N=4;
+    int M=2;
+    vector<vector<int>> edges ={
+        {0,1,2},
+        {0,2,1}
     };
-
     Solution obj;
-    vector<int> ans = obj.shortestPath(N, edges);
-    for (int x : ans) cout << x << " ";
+    vector<int>ans = obj.shortestPath(N, M, edges);
+    for(auto it: ans) cout<<it<<" ";
     return 0;
 }
