@@ -45,7 +45,7 @@ class Solution{
         for(int i=0; i<n; i++){
             if(mark[i]==1) ans.push_back(i);
         }
-        if(ans.size() ==0) return {-1};
+        if(ans.size()==0) return {-1};
         return ans;
     }
 };
