@@ -8,18 +8,18 @@ using namespace std;
 vector<vector<int>> Triplet1(vector<int> &num, int n){
     set<vector<int>> st;
     for(int i=0; i<n; i++){
-         for(int j=i+1;j<n;j++ ){
-            for(int k=j+1; k<n; k++){
+        for(int j=i+1;j<n;j++ ){
+           for(int k=j+1; k<n; k++){
                if(num[i]+num[j]+num[k]==0){
-               vector<int>temp={num[i], num[j], num[k]};
-               sort(temp.begin(), temp.end());
-               st.insert(temp);
-               }
-            }
-        }
-    }
-    vector<vector<int>> ans(st.begin(), st.end());
-    return ans;
+              vector<int>temp={num[i], num[j], num[k]};
+              sort(temp.begin(), temp.end());
+              st.insert(temp);
+              }
+             }
+         }
+     }
+     vector<vector<int>> ans(st.begin(), st.end());
+     return ans;
 
 }
 
@@ -42,6 +42,7 @@ vector<vector<int>> Triplet2(vector<int> num, int n){
    return ans;
 }
 
+// //optimal
 vector<vector<int>>Triplet3(vector<int> num, int n){
      vector<vector<int>>ans;
 
@@ -81,8 +82,8 @@ int main(){
     for(int i=0; i<no; i++){
         cin>>arr[i];
     }
-    vector<vector<int>> ret= Triplet1(arr, no);
-    // vector<vector<int>> ret= Triplet2(arr, no);
+    // vector<vector<int>> ret= Triplet1(arr, no);
+    vector<vector<int>> ret= Triplet2(arr, no);
     // vector<vector<int>> ret= Triplet3(arr, no);
 
     for(int i=0; i<ret.size(); i++){
